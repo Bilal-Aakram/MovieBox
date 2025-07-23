@@ -7,11 +7,14 @@
 
 import Foundation
 
-struct Movie : Identifiable {
+struct Movie : Codable, Identifiable {
     let id: Int
     let title: String?
     let imageUrl: String
     
+    func copy(id: Int, imageUrl: String) -> Movie {
+        .init(id: id, title: nil, imageUrl: imageUrl)
+        }
 }
 
 
