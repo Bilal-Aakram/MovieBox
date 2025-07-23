@@ -10,6 +10,8 @@ import SwiftData
 
 @main
 struct MovieBoxApp: App {
+    
+    
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             Item.self,
@@ -25,7 +27,7 @@ struct MovieBoxApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MovieExploreView()
         }
         .modelContainer(sharedModelContainer)
     }
