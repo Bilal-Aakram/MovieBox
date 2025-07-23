@@ -19,18 +19,20 @@ struct MovieTile :View {
             ){ image in
                 image.resizable(resizingMode: .stretch)
             } placeholder: {
-                Color.green
+                Color.gray
             }
+            .frame(maxWidth: 200, maxHeight: 300)
             
             if let title = movie.title {
                 Text(title)
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                   
                     .font(.title3)
             }
             
         }.cornerRadius(8)
-            .aspectRatio(2/3, contentMode: .fit)
-            .frame(maxWidth: 200, maxHeight: 300)
+            .frame(maxWidth: 200, maxHeight: 600)
+           
+            
     }
 }
 

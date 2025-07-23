@@ -15,7 +15,7 @@ struct MovieCarousel: View {
         VStack{
             TabView{
                 ForEach(movieList) { movie in
-                    MovieCard(movie: movie)
+                    MovieCard(imageUrl: movie.imageUrl)
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -24,6 +24,26 @@ struct MovieCarousel: View {
         }
     }
 }
+
+private struct MovieCard: View {
+    var imageUrl: String
+    var body: some View {
+            AsyncImage(
+                url: URL(string: imageUrl)
+            ){ image in
+                image.resizable(resizingMode: .stretch)
+            } placeholder: {
+                Color.gray
+            }
+    }
+}
+
+#Preview {
+    MovieCard(imageUrl:"https://www.vintagemovieposters.co.uk/wp-content/uploads/2020/01/IMG_2891.jpeg")
+    
+    
+}
+
 #Preview {
     MovieCarousel(movieList: [
         Movie(id: 0, title: "", imageUrl: "https://www.vintagemovieposters.co.uk/wp-content/uploads/2020/01/IMG_2891.jpeg"),

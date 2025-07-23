@@ -29,7 +29,7 @@ struct  HorizontalMovieList: View {
                 }.padding(.horizontal)
                 
             }
-        }.frame(maxHeight: .infinity)
+        }
     }
     
     
