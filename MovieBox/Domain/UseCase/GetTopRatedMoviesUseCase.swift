@@ -12,7 +12,6 @@ protocol GetTopRatedMoviesUseCase{
     func execute () -> AnyPublisher<[Movie], Error>
 }
 
-
 class GetTopRatedMoviesUseCaseImpl: GetTopRatedMoviesUseCase{
 
     private let movieRepository : MovieRepository
@@ -20,9 +19,8 @@ class GetTopRatedMoviesUseCaseImpl: GetTopRatedMoviesUseCase{
     init(movieRepository: MovieRepository) {
         self.movieRepository = movieRepository
     }
+    
     func execute() -> AnyPublisher<[Movie], any Error> {
-     
         return movieRepository.fetchTopRatedMovies()
-        
     }
 }

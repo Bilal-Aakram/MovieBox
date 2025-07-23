@@ -22,10 +22,8 @@ class GetPopularMoviesUseCaseImpl : GetPopularMoviesUseCase{
     init(movieRepository: MovieRepository) {
         self.movieRepository = movieRepository
     }
-    
+
     func execute() -> AnyPublisher<[Movie], any Error> {
-     
         return movieRepository.fetchPopularMovies()
-        
     }
 }
