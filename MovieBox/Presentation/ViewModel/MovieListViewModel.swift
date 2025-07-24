@@ -72,6 +72,7 @@ class MovieListViewModel: ObservableObject{
             })
             .store(in: &cancellables)
     }
+    
     func fetchTopRatedMovies() {
         isLoading = true
         getTopRatedMoviesUseCase.execute()
@@ -91,5 +92,12 @@ class MovieListViewModel: ObservableObject{
                 })
             })
             .store(in: &cancellables)
+    }
+    
+    func tryAgain() {
+        isError = false
+        fetchPopularMovies()
+        fetchUpccomingMovies()
+        fetchTopRatedMovies()
     }
 }
