@@ -17,7 +17,6 @@ struct  HorizontalMovieList: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.leading)
                 .font(.title2)
-            
 
             ScrollView(.horizontal) {
                 LazyHStack(alignment: .top){
@@ -31,9 +30,6 @@ struct  HorizontalMovieList: View {
             }
         }
     }
-    
-    
-    
 }
 
 

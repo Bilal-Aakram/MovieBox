@@ -27,7 +27,7 @@ struct MovieBoxApp: App {
 
     var body: some Scene {
         WindowGroup {
-            MovieExploreView()
+            MainTabView()
         }
         .modelContainer(sharedModelContainer)
     }
