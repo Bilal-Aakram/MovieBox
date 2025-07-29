@@ -12,4 +12,5 @@ protocol MovieRepository {
     func fetchPopularMovies() -> AnyPublisher<[Movie], Error>
     func fetchUpcomingMovies () -> AnyPublisher<[Movie], Error>
     func fetchTopRatedMovies () -> AnyPublisher<[Movie], Error>
+    func searchMovies(query : String) -> AnyPublisher<[Movie], Error>
 }

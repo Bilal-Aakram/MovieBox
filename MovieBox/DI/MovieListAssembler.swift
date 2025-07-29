@@ -7,16 +7,25 @@
 
 import Foundation
 
-struct MovieListAssembler{
-   static func makeMovieListViewModel() -> MovieListViewModel {
+struct DIAssembler{
+   static func makeMovieListViewModel() -> ExploreViewModel {
         let networkService = NetworkService()
         let movieService = MovieService(networkService: networkService)
         let movieRepository = MovieRepositoryImpl(movieService: movieService)
         
-        return MovieListViewModel(
+        return ExploreViewModel(
             getPopularMoviesUseCase: GetPopularMoviesUseCaseImpl(movieRepository: movieRepository),
             getUpcomingMoviesUseCase: GetGetUpcomingMoviesUseCaseImpl(movieRepository: movieRepository),
             getTopRatedMoviesUseCase: GetTopRatedMoviesUseCaseImpl(movieRepository: movieRepository)
         )
     }
+    static func makeSearchViewModel() -> SearchViewModel {
+         let networkService = NetworkService()
+         let movieService = MovieService(networkService: networkService)
+         let movieRepository = MovieRepositoryImpl(movieService: movieService)
+         
+         return SearchViewModel(
+             searchMovieUseCase: SearchMoviesUseCaseImpl(movieRepository: movieRepository)
+         )
+     }
 }

@@ -10,7 +10,7 @@ import SwiftData
 
 struct MovieExploreView: View {
     
-    @StateObject private var viewModel: MovieListViewModel = MovieListAssembler.makeMovieListViewModel()
+    @StateObject private var viewModel: ExploreViewModel = DIAssembler.makeMovieListViewModel()
     
     var body: some View {
         MovieExploreContent(
@@ -27,61 +27,63 @@ struct MovieExploreView: View {
     }
     
 }
-    private struct MovieExploreContent: View {
-        
-        var isLoading : Bool
-        var isError : Bool
-        var popularMovies: [Movie]
-        var topRatedMovies: [Movie]
-        var upcomingMovies: [Movie]
-        var onRefresh : () -> ()
-        
-        var body: some View {
-            if isLoading  {
-                ProgressView()
-                    .progressViewStyle(
-                        CircularProgressViewStyle (
-                            tint: .black
-                        )
+
+private struct MovieExploreContent: View {
+    
+    var isLoading : Bool
+    var isError : Bool
+    var popularMovies: [Movie]
+    var topRatedMovies: [Movie]
+    var upcomingMovies: [Movie]
+    var onRefresh : () -> ()
+    
+    var body: some View {
+        if isLoading  {
+            ProgressView()
+                .progressViewStyle(
+                    CircularProgressViewStyle (
+                        tint: .black
                     )
-                    .frame(
-                        alignment: .center
-                    )
-            }else if isError{
-                Text(
-                    "Something went wrong. Please try again!"
                 )
-                Button(
-                    "Try again"
-                ) {
-                    onRefresh()
-                }
+                .frame(
+                    alignment: .center
+                )
+        }else if isError{
+            Text(
+                "Something went wrong. Please try again!"
+            )
+            Button(
+                "Try again"
+            ) {
+                onRefresh()
             }
-            else{
-                ScrollView {
-                    VStack {
-                        MovieCarousel(
-                            movieList: popularMovies
-                        )
-                        .aspectRatio(
-                            2/3,
-                            contentMode: .fit
-                        )
-                        
-                        HorizontalMovieList(
-                            title: "Top Rated Movies",
-                            movieList: topRatedMovies
-                        )
-                        HorizontalMovieList(
-                            title: "Upcoming Movies",
-                            movieList: upcomingMovies
-                        )
-                    }
+        }
+        else{
+            ScrollView {
+                VStack {
+                    MovieCarousel(
+                        movieList: popularMovies
+                    )
+                    .aspectRatio(
+                        2/3,
+                        contentMode: .fit
+                    )
+                    
+                    HorizontalMovieList(
+                        title: "Top Rated Movies",
+                        movieList: topRatedMovies
+                    )
+                    
+                    HorizontalMovieList(
+                        title: "Upcoming Movies",
+                        movieList: upcomingMovies
+                    )
                 }
             }
         }
     }
-    
+}
+
 #Preview {
     let movies =  [
         Movie(
