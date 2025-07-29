@@ -12,25 +12,30 @@ struct MovieTile :View {
     
     var movie : Movie
     
+    let width: CGFloat = 200.0
     var body: some View {
-        VStack(alignment: .leading){
+        VStack(alignment : .leading){
             AsyncImage(
-                url: URL(string: movie.imageUrl)
-            ){ image in
-                image.resizable(resizingMode: .stretch)
-            } placeholder: {
-                Color.gray
-            }
-            .frame(maxWidth: 200, maxHeight: 300)
+                    url: URL(string: movie.imageUrl)
+                ){ image in
+                    image.resizable().scaledToFill()
+                } placeholder: {
+                    Color.gray
+                }.aspectRatio(2/3, contentMode: .fit)
+                    .clipped()
+                    
+
             
             if let title = movie.title {
                 Text(title)
-                   
-                    .font(.title3)
+                   .font(.title3)
+                   .lineLimit(1)
+                   .fixedSize(horizontal: false, vertical: true)
+                   .multilineTextAlignment(.trailing)
+                   .truncationMode(.tail)
             }
-            
         }.cornerRadius(8)
-            .frame(maxWidth: 200, maxHeight: 600)
+            
            
             
     }

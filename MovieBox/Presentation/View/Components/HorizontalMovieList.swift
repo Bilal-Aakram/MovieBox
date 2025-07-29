@@ -22,10 +22,13 @@ struct  HorizontalMovieList: View {
                 LazyHStack(alignment: .top){
                     ForEach(movieList) { movie in
                         MovieTile(movie: movie)
+                            .frame(maxWidth: 200)
                             .cornerRadius(10)
-                        
                     }
                 }.padding(.horizontal)
+                    .frame(maxHeight: 300)
+                
+                
                 
             }
         }
