@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-class MovieListViewModel: ObservableObject{
+class ExploreViewModel: ObservableObject{
     
     @Published var isLoading: Bool = false
     @Published var popularMovies : [Movie] = []
