@@ -13,4 +13,7 @@ protocol MovieRepository {
     func fetchUpcomingMovies () -> AnyPublisher<[Movie], Error>
     func fetchTopRatedMovies () -> AnyPublisher<[Movie], Error>
     func searchMovies(query : String) -> AnyPublisher<[Movie], Error>
+    func addToWatchlist (movie : Movie) async
+    func removeFromWatchlist (movie : Movie) async
+    func fetchWatchlist() async -> [Movie]?
 }

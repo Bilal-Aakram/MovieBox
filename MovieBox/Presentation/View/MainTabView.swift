@@ -18,7 +18,7 @@ struct MainTabView: View {
                 SearchView()
             }
             Tab("Watchlist", systemImage: "list.bullet.below.rectangle", value: 2) {
-                MovieExploreView()
+                WatchlistView()
             }
         }
     }

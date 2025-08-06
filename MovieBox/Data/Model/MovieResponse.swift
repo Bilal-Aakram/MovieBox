@@ -49,7 +49,15 @@ struct MovieEntity: Codable {
     }
     
     func toDomain() -> Movie{
-        return Movie(id: id, title:originalTitle, imageUrl: "https://image.tmdb.org/t/p/w500\(posterPath ?? "")"
+        return Movie(
+            id: id,
+            title:originalTitle,
+            imageUrl: "https://image.tmdb.org/t/p/w500\(posterPath ?? "")",
+            overview: overview,
+            releaseDate: releaseDate,
+            voteAverage: voteAverage,
+            voteCount: voteCount
+           
         )
     }
 }

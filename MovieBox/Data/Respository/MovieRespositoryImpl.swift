@@ -8,13 +8,19 @@
 import Foundation
 import Combine
 
+
 class MovieRepositoryImpl : MovieRepository {
-    
-    
-    
+  
+    let movieLocalDataSource : MovieLocalDataSource
     let movieService : MovieService
-    init(movieService: MovieService) {
+    private let watchlistKey = "watchlist"
+    
+    
+    init(movieService: MovieService,
+         movieLocalDataSource : MovieLocalDataSource) {
+        
         self.movieService = movieService
+        self.movieLocalDataSource = movieLocalDataSource
     }
     
     func fetchPopularMovies() -> AnyPublisher<[Movie], any Error> {
@@ -55,4 +61,18 @@ class MovieRepositoryImpl : MovieRepository {
             }
             .eraseToAnyPublisher()
     }
+    
+    func addToWatchlist(movie: Movie) async {
+        await self.movieLocalDataSource.insert(movie: movie)
+    }
+    
+    func removeFromWatchlist (movie: Movie) async {
+        await self.movieLocalDataSource.delete(movie: movie)
+    }
+    
+    func fetchWatchlist() async -> [Movie]?  {
+        return await self.movieLocalDataSource.fetchAll()
+    }
+    
+        
 }

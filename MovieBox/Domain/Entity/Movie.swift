@@ -6,15 +6,31 @@
 //
 
 import Foundation
+import SwiftData
 
-struct Movie : Codable, Identifiable {
-    let id: Int
-    let title: String?
-    let imageUrl: String
+@Model
+final class Movie: Sendable {
+    var id: Int
+    var title: String?
+    var imageUrl: String
+    var overview : String
+    var releaseDate : String?
+    var voteAverage: Double
+    var voteCount: Int
+   
     
-    func copy(id: Int, imageUrl: String) -> Movie {
-        .init(id: id, title: nil, imageUrl: imageUrl)
-        }
+    
+    
+    init(id: Int, title: String?, imageUrl: String, overview: String,
+         releaseDate: String?, voteAverage: Double, voteCount: Int) {
+        self.id = id
+        self.title = title
+        self.imageUrl = imageUrl
+        self.overview = overview
+        self.releaseDate = releaseDate
+        self.voteAverage = voteAverage
+        self.voteCount = voteCount
+    
+    }
 }
-
 
