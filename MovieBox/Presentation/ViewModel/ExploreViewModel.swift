@@ -19,16 +19,18 @@ class ExploreViewModel: ObservableObject{
     let getPopularMoviesUseCase : GetPopularMoviesUseCase
     let getUpcomingMoviesUseCase : GetUpcomingMoviesUseCase
     let getTopRatedMoviesUseCase : GetTopRatedMoviesUseCase
-    
+   
     private var cancellables = Set<AnyCancellable>()
     
     init(getPopularMoviesUseCase : GetPopularMoviesUseCase,
          getUpcomingMoviesUseCase : GetUpcomingMoviesUseCase,
-         getTopRatedMoviesUseCase : GetTopRatedMoviesUseCase
+         getTopRatedMoviesUseCase : GetTopRatedMoviesUseCase,
+         
     ) {
         self.getPopularMoviesUseCase = getPopularMoviesUseCase
         self.getUpcomingMoviesUseCase = getUpcomingMoviesUseCase
         self.getTopRatedMoviesUseCase = getTopRatedMoviesUseCase
+
         fetchPopularMovies()
         fetchUpccomingMovies()
         fetchTopRatedMovies()
@@ -65,10 +67,7 @@ class ExploreViewModel: ObservableObject{
                     print("Error loading movies:", error.localizedDescription)
                 }
             }, receiveValue: { movies in
-                self.upcomingMovies = movies.map({ movie in
-                    // Removing title for upcoming movies
-                    movie.copy(id: movie.id, imageUrl: movie.imageUrl)
-                })
+                self.upcomingMovies = movies
             })
             .store(in: &cancellables)
     }
@@ -86,18 +85,17 @@ class ExploreViewModel: ObservableObject{
                     print("Error loading movies:", error.localizedDescription)
                 }
             }, receiveValue: { movies in
-                self.topRatedMovies = movies.map({ movie in
-                    // Removing title for upcoming movies
-                    movie.copy(id: movie.id, imageUrl: movie.imageUrl)
-                })
+                self.topRatedMovies = movies
             })
             .store(in: &cancellables)
     }
     
+
     func tryAgain() {
         isError = false
         fetchPopularMovies()
         fetchUpccomingMovies()
         fetchTopRatedMovies()
     }
+    
 }

@@ -11,52 +11,32 @@ import SwiftUI
 struct MovieTile :View {
     
     var movie : Movie
+    @State private var showDetail = false
     
     let width: CGFloat = 200.0
     var body: some View {
-        VStack(alignment : .leading){
-            AsyncImage(
-                    url: URL(string: movie.imageUrl)
-                ){ image in
-                    image.resizable().scaledToFill()
-                } placeholder: {
-                    Color.gray
-                }.aspectRatio(2/3, contentMode: .fit)
-                    .clipped()
-                    
-
-            
-            if let title = movie.title {
-                Text(title)
-                   .font(.title3)
-                   .lineLimit(1)
-                   .fixedSize(horizontal: false, vertical: true)
-                   .multilineTextAlignment(.trailing)
-                   .truncationMode(.tail)
+        AsyncImage(
+            url: URL(string: movie.imageUrl)
+        ){ image in
+            image.resizable().scaledToFill()
+        } placeholder: {
+            Color.gray
+        }.aspectRatio(2/3, contentMode: .fit)
+            .clipped()
+            .cornerRadius(8)
+            .fullScreenCover(isPresented: $showDetail){
+                MovieDetailsView(movie: movie, onClose:{
+                    showDetail = false
+                } )
             }
-        }.cornerRadius(8)
-            
-           
-            
+            .onTapGesture {
+                showDetail = true
+            }
     }
 }
 
 #Preview {
     MovieTile(
-        movie: Movie(
-            id: 0,
-            title: "Joker",
-            imageUrl: "https://www.vintagemovieposters.co.uk/wp-content/uploads/2020/01/IMG_2891.jpeg"
-        )
-    )
-}
-
-#Preview {
-    MovieTile(
-        movie: Movie(
-            id: 0,
-            title: nil,
-            imageUrl: "https://www.vintagemovieposters.co.uk/wp-content/uploads/2020/01/IMG_2891.jpeg"
-        )
+        movie: Movie.preview
     )
 }

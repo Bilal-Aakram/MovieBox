@@ -27,32 +27,14 @@ struct  HorizontalMovieList: View {
                     }
                 }.padding(.horizontal)
                     .frame(maxHeight: 300)
-                
-                
-                
             }
         }
     }
 }
 
-
-
 #Preview {
     HorizontalMovieList(
         title: "Continue Watching",
-        movieList: [
-            Movie(id: 0, title: "Inception", imageUrl: ""),
-            Movie(id: 1, title: "Tenet", imageUrl: ""),
-            Movie(id: 2, title: "F1", imageUrl: "")
-        ])
-}
-
-#Preview {
-    HorizontalMovieList(
-        title: "Continue Watching",
-        movieList: [
-            Movie(id: 0, title: "Inception", imageUrl: ""),
-            Movie(id: 1, title: "Tenet", imageUrl: ""),
-            Movie(id: 2, title: "F1", imageUrl: "")
-        ])
+        movieList: Movie.previewList
+    )
 }
