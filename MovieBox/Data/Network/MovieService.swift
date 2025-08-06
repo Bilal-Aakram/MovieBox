@@ -11,7 +11,7 @@ import Combine
 
 class MovieService {
     private let networkService : NetworkService
-    private let apiKey = "efedd588c03d6b3c28c1e801ec985051"
+    private let apiKey = "YOUR_API_KEY"
     
     init(networkService: NetworkService){
         self.networkService = networkService
