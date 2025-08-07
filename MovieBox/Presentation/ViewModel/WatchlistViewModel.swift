@@ -13,6 +13,8 @@ class WatchlistViewModel : ObservableObject {
     
     let movieRepository : MovieRepository
     @Published var watchlist : [Movie] = []
+    @Published var errorMessage : String? = nil
+    
     
     init(movieRepository: MovieRepository) {
         self.movieRepository = movieRepository
@@ -44,7 +46,11 @@ class WatchlistViewModel : ObservableObject {
     
     func fetchWatchlist()  {
         Task{ @MainActor in
-            self.watchlist = await self.movieRepository.fetchWatchlist() ?? []
+            do{
+               try self.watchlist = await self.movieRepository.fetchWatchlist()
+            }catch{
+                errorMessage = "Something went wrong. Please try again! "
+            }
         }
     }
     

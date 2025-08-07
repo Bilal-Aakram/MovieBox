@@ -70,8 +70,8 @@ class MovieRepositoryImpl : MovieRepository {
         await self.movieLocalDataSource.delete(movie: movie)
     }
     
-    func fetchWatchlist() async -> [Movie]?  {
-        return await self.movieLocalDataSource.fetchAll()
+    func fetchWatchlist() async throws -> [Movie]  {
+        return try await self.movieLocalDataSource.fetchAll()
     }
     
         

@@ -15,5 +15,5 @@ protocol MovieRepository {
     func searchMovies(query : String) -> AnyPublisher<[Movie], Error>
     func addToWatchlist (movie : Movie) async
     func removeFromWatchlist (movie : Movie) async
-    func fetchWatchlist() async -> [Movie]?
+    func fetchWatchlist() async throws -> [Movie]
 }

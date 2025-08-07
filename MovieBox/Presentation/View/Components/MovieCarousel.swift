@@ -20,7 +20,7 @@ struct MovieCarousel: View {
                             MovieDetailsView(movie: movie, onClose: {
                                 showDetail = false
                             })
-                        }   
+                        }
                 }
                 .onTapGesture {
                     showDetail = true

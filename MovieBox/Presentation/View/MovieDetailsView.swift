@@ -93,5 +93,5 @@ struct MovieDetailsView: View {
     
 }
 #Preview {
-    MovieDetails(movie:Movie.preview, onClose: {})
+    MovieDetailsView(movie:Movie.preview, onClose: {})
 }

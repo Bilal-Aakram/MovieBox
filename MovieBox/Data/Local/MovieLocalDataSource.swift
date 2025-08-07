@@ -24,11 +24,11 @@ class MovieLocalDataSource{
         self.movieDatabase.context?.delete(movie)
     }
     
-    func fetchAll() async -> [Movie]?  {
-        do{
-            return try self.movieDatabase.context?.fetch(FetchDescriptor<Movie>())
-        }catch{
-            fatalError(error.localizedDescription)
-        }
+    func fetchAll() async throws -> [Movie]  {
+        guard let context = movieDatabase.context else {
+                throw NSError(domain: "DatabaseError", code: 1, userInfo: [NSLocalizedDescriptionKey: "Database context is nil"])
+            }
+
+        return try context.fetch(FetchDescriptor<Movie>())
     }
 }
