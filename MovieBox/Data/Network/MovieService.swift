@@ -11,7 +11,7 @@ import Combine
 
 class MovieService {
     private let networkService : NetworkService
-    private let apiKey = "YOUR_API_KEY"
+    
     
     init(networkService: NetworkService){
         self.networkService = networkService
@@ -19,9 +19,9 @@ class MovieService {
     
     
     func fetchPopularMovies() -> AnyPublisher<[MovieEntity], Error> {
-            var components = URLComponents(string: "https://api.themoviedb.org/3/movie/popular")!
+        var components = URLComponents(string: "\(Configuration.baseURL)/movie/popular")!
             components.queryItems = [
-                URLQueryItem(name: "api_key", value: apiKey)
+                URLQueryItem(name: "api_key", value: Configuration.apiKey)
             ]
             
             guard let url = components.url else {
@@ -39,9 +39,9 @@ class MovieService {
     }
     
     func fetchUpcomingMovies() -> AnyPublisher<[MovieEntity], Error>{
-        var components = URLComponents(string: "https://api.themoviedb.org/3/movie/upcoming")!
+        var components = URLComponents(string: "\(Configuration.baseURL)/movie/upcoming")!
         components.queryItems = [
-            URLQueryItem(name: "api_key", value: apiKey)
+            URLQueryItem(name: "api_key", value: Configuration.apiKey)
         ]
         guard let url = components.url else {
             return Fail(error: URLError(.badURL)).eraseToAnyPublisher()
@@ -56,9 +56,9 @@ class MovieService {
     }
     
     func fetchTopRatedMovies() -> AnyPublisher<[MovieEntity], Error>{
-        var components = URLComponents(string: "https://api.themoviedb.org/3/movie/top_rated")!
+        var components = URLComponents(string: "\(Configuration.baseURL)/movie/top_rated")!
         components.queryItems = [
-            URLQueryItem(name: "api_key", value: apiKey)
+            URLQueryItem(name: "api_key", value: Configuration.apiKey)
         ]
         guard let url = components.url else {
             return Fail(error: URLError(.badURL)).eraseToAnyPublisher()
@@ -73,9 +73,9 @@ class MovieService {
     }
     
     func searchMovies(query : String) -> AnyPublisher<[MovieEntity], Error>{
-        var components = URLComponents(string: "https://api.themoviedb.org/3/search/movie")!
+        var components = URLComponents(string: "\(Configuration.baseURL)/search/movie")!
         components.queryItems = [
-            URLQueryItem(name: "api_key", value: apiKey),
+            URLQueryItem(name: "api_key", value: Configuration.apiKey),
             URLQueryItem(name: "query", value: query)
         ]
         guard let url = components.url else {
