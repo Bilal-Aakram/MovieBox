@@ -51,7 +51,7 @@ struct MovieEntity: Codable {
     func toDomain() -> Movie{
         return Movie(
             id: id,
-            title:originalTitle,
+            title:title ?? originalTitle,
             imageUrl: "https://image.tmdb.org/t/p/w500\(posterPath ?? "")",
             overview: overview,
             releaseDate: releaseDate,
@@ -60,7 +60,10 @@ struct MovieEntity: Codable {
            
         )
     }
+    
+   
 }
+
 
 /*enum OriginalLanguage: String, Codable {
     case en = "en"

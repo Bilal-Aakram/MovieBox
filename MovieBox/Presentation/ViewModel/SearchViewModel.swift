@@ -28,6 +28,7 @@ class SearchViewModel: ObservableObject{
     func searchMovie(query : String) {
         isLoading = true
         searchMovieUseCase.execute(query: query)
+            .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { completion in
                 self.isLoading = false
                 switch completion {

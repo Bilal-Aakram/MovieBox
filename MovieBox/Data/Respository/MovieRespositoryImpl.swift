@@ -73,6 +73,4 @@ class MovieRepositoryImpl : MovieRepository {
     func fetchWatchlist() async throws -> [Movie]  {
         return try await self.movieLocalDataSource.fetchAll()
     }
-    
-        
 }

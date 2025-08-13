@@ -10,9 +10,9 @@ import Foundation
 struct DIAssembler{
     static func makeMovieListViewModel() -> ExploreViewModel {
         let networkService = NetworkService()
-        let movieService = MovieService(networkService: networkService)
+        let movieService = MovieServiceImpl(networkService: networkService)
         let movieDatabase = MovieDatabase.shared
-        let movieLocalDataSource = MovieLocalDataSource(movieDatabase: movieDatabase)
+        let movieLocalDataSource = MovieLocalDataSourceImpl(movieDatabase: movieDatabase)
         let movieRepository = MovieRepositoryImpl(movieService: movieService,
                                                   movieLocalDataSource: movieLocalDataSource)
         
@@ -24,9 +24,9 @@ struct DIAssembler{
     }
     static func makeSearchViewModel() -> SearchViewModel {
         let networkService = NetworkService()
-        let movieService = MovieService(networkService: networkService)
+        let movieService = MovieServiceImpl(networkService: networkService)
         let movieDatabase = MovieDatabase.shared
-        let movieLocalDataSource = MovieLocalDataSource(movieDatabase: movieDatabase)
+        let movieLocalDataSource = MovieLocalDataSourceImpl(movieDatabase: movieDatabase)
         let movieRepository = MovieRepositoryImpl(movieService: movieService,
                                                   movieLocalDataSource: movieLocalDataSource)
         
@@ -37,9 +37,9 @@ struct DIAssembler{
 
     static func makeWatchlistViewModel()  -> WatchlistViewModel{
         let networkService = NetworkService()
-        let movieService = MovieService(networkService: networkService)
+        let movieService = MovieServiceImpl(networkService: networkService)
         let movieDatabase = MovieDatabase.shared
-        let movieLocalDataSource = MovieLocalDataSource(movieDatabase: movieDatabase)
+        let movieLocalDataSource = MovieLocalDataSourceImpl(movieDatabase: movieDatabase)
         let movieRepository = MovieRepositoryImpl(movieService: movieService,
                                                   movieLocalDataSource: movieLocalDataSource)
         

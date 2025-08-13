@@ -39,6 +39,7 @@ class ExploreViewModel: ObservableObject{
     func fetchPopularMovies() {
         isLoading = true
         getPopularMoviesUseCase.execute()
+            .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { completion in
                 self.isLoading = false
                 switch completion {
@@ -57,6 +58,7 @@ class ExploreViewModel: ObservableObject{
     func fetchUpccomingMovies() {
         isLoading = true
         getUpcomingMoviesUseCase.execute()
+            .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { completion in
                 self.isLoading = false
                 switch completion {
@@ -75,6 +77,7 @@ class ExploreViewModel: ObservableObject{
     func fetchTopRatedMovies() {
         isLoading = true
         getTopRatedMoviesUseCase.execute()
+            .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { completion in
                 self.isLoading = false
                 switch completion {

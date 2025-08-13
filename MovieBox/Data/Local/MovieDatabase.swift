@@ -24,7 +24,7 @@ class MovieDatabase{
                 context = ModelContext(container)
             }
         }catch{
-            debugPrint("Error initalizing Data Store", error)
+            print("Error initalizing Data Store", error)
         }
     }
 }
